@@ -1,0 +1,78 @@
+﻿
+
+What happens to cron jobs when the system is down?
+it is not executed.
+
+There is a program called Anacron that should better serve your needs
+http://anacron.sourceforge.net/
+
+
+
+
+http://stackoverflow.com/questions/7894307/crontab-every-15-45-on-the-hour
+
+field          allowed values
+-----          --------------
+minute         0-59
+hour           0-23
+day of month   1-31
+month          1-12 (or names, see below)
+day of week    0-7 (0 or 7 is Sun, or use names)
+
+# m   h   dom mon dow   user          command
+15,45 *    *   *   *    yourusername  wget -O /dev/null http://somesite.com/4_leads.php
+
+
+
+http://stackoverflow.com/questions/584770/how-would-i-get-a-cron-job-to-run-every-30-minutes
+
+
+Do:
+
+0,30 * * * * your_command
+
+
+
+
+
+
+http://superuser.com/questions/129331/schedule-a-cron-job-ev-x-minutes-but-exclude-it-from-certain-hours-in-the-morni?rq=1
+Is it possible to make a cron job run say, every 20 minutes, but make it not run for say, 1-4 in the morning.
+Yes it is.
+0,20,40 0,5-23 * * * /job/to/run
+
+
+
+
+
+
+
+Do I have to restart cron after changing the crontable file?
+sudo service cron restart
+/etc/init.d/cron reload – 
+
+ sudo cron reload 
+/etc/init.d/cron start|stop|restart|reload|force-reload
+
+
+
+
+http://stackoverflow.com/questions/132971/what-is-the-windows-version-of-cron
+Task scheduler API on MSDN.
+http://msdn.microsoft.com/en-us/library/aa383614.aspx
+
+http://cronw.sourceforge.net/
+
+0 6 4 1/1 * ? * 
+
+
+Gwäggi
+http://www.srf.ch/play/radio/popupaudioplayer?id=7e3eb20d-9081-4a67-829f-7cfe83a2b06c
+
+
+Peperoni:
+http://www.srf.ch/play/radio/popupaudioplayer?id=907821a6-5c6e-4437-8301-f51464a97d48
+
+
+
+
