@@ -294,11 +294,12 @@
         return "<option id='" + i + "'>" + displayTimeUnit(i) + "</option>";
     };
 
-    var generate = function () {
-
+    var generate = function ()
+    {
         var activeTab = $("ul#CronGenTabs li.active a").prop("id");
         var results = "";
-        switch (activeTab) {
+        switch (activeTab)
+        {
             case "MinutesTab":
                 results = "0 0/" + $("#MinutesInput").val() + " * 1/1 * ? *";
                 break;

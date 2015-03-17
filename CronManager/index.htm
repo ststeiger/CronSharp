@@ -170,18 +170,6 @@
         }
 
 
-        /*
-        .tabtitle2 {
-            display: none;
-        }
-
-        .mytab2 {
-            display: none;
-        }
-                        width: 620px;
-        */
-
-
         .popover
         {
             display: block;
@@ -278,7 +266,13 @@
         {
             padding: 20px;
         }
-        
+
+        .padContent
+        {
+            display: block;
+            padding: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -294,17 +288,15 @@
     <div class="popover">
         <h3 class="popover-title">Generate cron</h3>
         
+        <div class="padContent">
 
-        <input id="t1" class="rbTab rbTab1" name="selTab" type="radio" value="Tab 1" checked="checked" />
-        <input id="t2" class="rbTab rbTab2" name="selTab" type="radio" value="Tab 2" />
-        <input id="t3" class="rbTab rbTab3" name="selTab" type="radio" value="Tab 3" />
-        <input id="t4" class="rbTab rbTab4" name="selTab" type="radio" value="Tab 4" />
-        <input id="t5" class="rbTab rbTab5" name="selTab" type="radio" value="Tab 5" />
-        <input id="t6" class="rbTab rbTab6" name="selTab" type="radio" value="Tab 6" />
+            <input id="t1" class="rbTab rbTab1" name="selTab" type="radio" value="Tab 1" checked="checked" />
+            <input id="t2" class="rbTab rbTab2" name="selTab" type="radio" value="Tab 2" />
+            <input id="t3" class="rbTab rbTab3" name="selTab" type="radio" value="Tab 3" />
+            <input id="t4" class="rbTab rbTab4" name="selTab" type="radio" value="Tab 4" />
+            <input id="t5" class="rbTab rbTab5" name="selTab" type="radio" value="Tab 5" />
+            <input id="t6" class="rbTab rbTab6" name="selTab" type="radio" value="Tab 6" />
 
-        <div style="height: 10px;">&nbsp;</div>
-
-        <div style="display: block;height: 180px; padding-left: 10px; padding-right: 10px;">
 
             <div class="TitleTab">
                <label id="lblT1" class="tabtitle tabtitle1" for="t1">Minuten</label><!--
@@ -315,15 +307,14 @@
             --><label id="lblT6" class="tabtitle tabtitle6" for="t6">J&auml;hrlich</label>
             </div>
 
-            <div class="ContentTab ContentTab1">
+            <div id="divMin" class="ContentTab ContentTab1">
                 <div class="padLayout">
                     <span class="translate">Every</span>&nbsp;
                     <input id="MinutesInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">minute(s)</span>
                 </div>
             </div>
 
-            <!-- Hourly -->
-            <div class="ContentTab ContentTab2">
+            <div id="divHour" class="ContentTab ContentTab2">
                 <div class="padLayout">
                     <div class="well well-small">
                         <input type="radio" value="1" name="HourlyRadio" checked="checked">&nbsp;<span class="translate">Every</span>&nbsp;
@@ -337,8 +328,7 @@
                 </div>
             </div>
 
-            <!-- Daily-->
-            <div class="ContentTab ContentTab3">
+            <div id="divDaily" class="ContentTab ContentTab3">
                 <div class="padLayout">
 
                     <div class="well well-small">
@@ -358,21 +348,20 @@
                 </div>
             </div>
 
-            <!-- Weekly -->
-            <div class="ContentTab ContentTab4">
+            <div id="divWeekly" class="ContentTab ContentTab4">
                 <div class="padLayout">
                     <div id="divWeeklyDays" class="well well-small">
                         <div class="horizontal">
-                            <input id="cbMON" type="checkbox" value="MON"><label id="lblMON" for="cbMON">&nbsp;Monday</label><br />
-                            <input id="cbWED" type="checkbox" value="WED"><label id="lblWED" for="cbWED">&nbsp;Wednesday</label><br />
-                            <input id="cbFRI" type="checkbox" value="FRI"><label id="lblFRI" for="cbFRI">&nbsp;Friday</label><br />
-                            <input id="cbSUN" type="checkbox" value="SUN"><label id="lblSUN" for="cbSUN">&nbsp;Sunday</label>
+                            <input id="cbMON" type="checkbox" value="MON"><label id="lblMON" for="cbMON"></label><br />
+                            <input id="cbWED" type="checkbox" value="WED"><label id="lblWED" for="cbWED"></label><br />
+                            <input id="cbFRI" type="checkbox" value="FRI"><label id="lblFRI" for="cbFRI"></label><br />
+                            <input id="cbSUN" type="checkbox" value="SUN"><label id="lblSUN" for="cbSUN"></label>
                         </div>
 
                         <div class="horizontal">
-                            <input id="cbTUE" type="checkbox" value="TUE"><label id="lblTUE" for="cbTUE">&nbsp;Tuesday</label><br />
-                            <input id="cbTHU" type="checkbox" value="THU"><label id="lblTHU" for="cbTHU">&nbsp;Thursday</label><br />
-                            <input id="cbSAT" type="checkbox" value="SAT"><label id="lblSAT" for="cbSAT">&nbsp;Saturday</label><br />
+                            <input id="cbTUE" type="checkbox" value="TUE"><label id="lblTUE" for="cbTUE"></label><br />
+                            <input id="cbTHU" type="checkbox" value="THU"><label id="lblTHU" for="cbTHU"></label><br />
+                            <input id="cbSAT" type="checkbox" value="SAT"><label id="lblSAT" for="cbSAT"></label><br />
                             <input id="cbSND" type="checkbox" value="SND" style="visibility: hidden;"><label for="cbSND">&nbsp;</label> <!-- Saint-Neverlings-Day -->
                         </div>
                     </div>
@@ -385,7 +374,7 @@
 
             </div>
 
-            <div class="ContentTab ContentTab5">
+            <div id="divMonthly" class="ContentTab ContentTab5">
                 <div class="padLayout">
                     <div class="well well-small">
                         <input type="radio" value="1" name="MonthlyRadio" checked="checked">&nbsp;<span class="translate">Day</span>&nbsp;
@@ -405,7 +394,7 @@
                 </div>
             </div>
 
-            <div class="ContentTab ContentTab6">
+            <div id="divYearly" class="ContentTab ContentTab6">
                 <div class="padLayout">
                     <div class="well well-small">
                         <input type="radio" value="1" name="YearlyRadio" checked="checked">&nbsp;<span class="translate">Every</span>&nbsp;
@@ -424,11 +413,11 @@
                 </div>
             </div>
 
-        
+
         </div>
     </div>
 
-
+    <input type="button" onclick="generate();" value="Update" />
     <!--
     <div class="popover fade bottom in" style="width: 500px; max-width: 500px !important; display: block;">
         <h3 class="popover-title">Generate cron</h3>
@@ -520,6 +509,7 @@
             select.insertAdjacentHTML('beforeEnd', options.join('\n'));
         }
 
+
         function fillMins(id)
         {
             var select = document.getElementById(id);
@@ -536,7 +526,6 @@
 
             select.insertAdjacentHTML('beforeEnd', options.join('\n'));
         }
-
 
 
         function fillOrdinalWeekDay(id)
@@ -709,6 +698,113 @@
         }
 
         
+
+        var generate = function ()
+        {
+            var activeTab = 1;
+            var tabs = ["", "divMin", "divHour", "divDaily", "divWeekly", "divMonthly", "divYearly"];
+
+            for (; activeTab < 7; ++activeTab)
+            {
+                if (!!document.getElementById("t" + activeTab).checked)
+                {
+                    //activeTab = document.getElementById(tabs[activeTab]);
+                    activeTab = tabs[activeTab];
+                    break;
+                }
+                
+            }
+
+            console.log(activeTab);
+            return;
+
+            
+            var results = "";
+            switch (activeTab)
+            {
+                case "divMin":
+                    results = "0 0/" + document.getElementById("MinutesInput").value + " * 1/1 * ? *";
+                    break;
+                case "divHour":
+                    switch (document.querySelector("input[type='radio'][name='HourlyRadio']:checked").value)
+                    {
+                        case "1":
+                            results = "0 0 0/" + document.getElementById("HoursInput").value + " 1/1 * ? *";
+                            break;
+                        case "2":
+                            results = "0 " + document.getElementById("selHourlyMinutes").value + " " + document.getElementById("selHourlyHours").value + " 1/1 * ? *";
+                            break;
+                    }
+                    break;
+                case "divDaily":
+                    switch (document.querySelector("input[type='radio'][name='DailyRadio']:checked").value)
+                    {
+                        case "1":
+                            results = "0 " + document.getElementById("selDailyMinutes").value + " " + document.getElementById("selDailyHours").value + " 1/" + document.getElementById("DaysInput").value + " * ? *";
+                            break;
+                        case "2":
+                            results = "0 " + document.getElementById("selDailyMinutes").value + " " + document.getElementById("selDailyHours").value + " ? * MON-FRI *";
+                            break;
+                    }
+                    break;
+                case "divWeekly":
+                    var selectedDays = "";
+
+                    // $("#Weekly input:checkbox:checked").each(function () { selectedDays += $(this).val() + ","; });
+                    var checked = document.querySelectorAll("#divWeeklyDays input[type='checkbox']:checked");
+
+                    for (var i = 0; i < checked.length; i++)
+                    {
+                        selectedDays += checked[i].value + ",";
+                    }
+
+                    if (selectedDays.length > 0)
+                        selectedDays = selectedDays.substr(0, selectedDays.length - 1);
+                    
+                    results = "0 " + document.getElementById("selWeeklyMinutes").value + " " + document.getElementById("selWeeklyHours").value + " ? * " + selectedDays + " *";
+                    break;
+                case "divMonthly":
+                    switch (document.querySelector("input[type='radio'][name='MonthlyRadio']:checked").value)
+                    {
+                        case "1":
+                            results = "0 " + document.getElementById("selMonthlyMinutes").value + " " + document.getElementById("selMonthlyHours").value + " " + document.getElementById("DayOfMOnthInput").value + " 1/" + document.getElementById("MonthInput").value + " ? *";
+                            break;
+                        case "2":
+                            results = "0 " + document.getElementById("selMonthlyMinutes").value + " " + document.getElementById("selMonthlyHours").value + " ? 1/" + document.getElementById("EveryMonthInput").value + " " + document.getElementById("selDayInWeekOrder").value + "#" + document.getElementById("selOrdinalWeekDay").value + " *";
+                            break;
+                    }
+                    break;
+                case "divYearly":
+
+                    // MonthsOfYear ==> document.getElementById("selMonthsOfYear").value
+                    // YearInput ==> document.getElementById("YearInput").value
+
+                    // DayOrderInYear ==>  document.getElementById("selDayOrderInYear").value
+                    // DayWeekForYear ==>  document.getElementById("selDayWeekForYear").value
+                    // MonthsOfYear2 ==>  document.getElementById("selMonthsOfYear2").value
+
+
+                    // YearlyHours ==>  document.getElementById("selYearlyHours").value
+                    // YearlyMinutes ==>  document.getElementById("selYearlyMinutes").value
+
+                    switch (document.querySelector("input[type='radio'][name='YearlyRadio']:checked").value)
+                    {
+                        case "1":
+                            // MonthlyHours ==> document.getElementById("selMonthlyHours").value
+                            results = "0 " + document.getElementById("selYearlyMinutes").value + " " + document.getElementById("selYearlyHours").value + " " + document.getElementById("YearInput").value + " " + document.getElementById("selMonthsOfYear").value + " ? *";
+                            break;
+                        case "2":
+                            results = "0 " + document.getElementById("selYearlyMinutes").value + " " + document.getElementById("selYearlyHours").value + " ? " + document.getElementById("selMonthsOfYear2").value + " " + document.getElementById("selDayWeekForYear").value + "#" + document.getElementById("selDayOrderInYear").value + " *";
+                            break;
+                    }
+                    break;
+            }
+
+            console.log(results);
+        }
+
+
+
 
 
         // document.getElementById("selMins").innerHTML = "";
