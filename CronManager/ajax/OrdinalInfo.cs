@@ -2,11 +2,99 @@
 namespace CronManager.ajax
 {
 
+    public class TranslationMatrix
+    { 
+         public System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, string>> dict;
+
+         public TranslationMatrix()
+         {
+             this.dict = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, string>>();
+
+             dict.Add("de-CH", new System.Collections.Generic.Dictionary<string,string>());
+
+
+
+             dict["de-CH"]["Every"] = "Alle";
+             dict["de-CH"]["minute(s)"] = "Minute(n)";
+
+
+
+             dict["de-CH"]["day(s)"] = "Tag(e)";
+             dict["de-CH"]["hour(s)"] = "Stunde(n)";
+             dict["de-CH"]["month(s)"] = "Monat(e)";
+             dict["de-CH"]["Start Time"] = "Startzeit";
+             dict["de-CH"]["Day"] = "Tag";
+             dict["de-CH"]["of every"] = "alle";
+             dict["de-CH"]["The"] = "Der";
+             dict["de-CH"]["in day"] = "am Tag";
+             dict["de-CH"]["of"] = "vom"; // "of", "des"
+             dict["de-CH"]["Every week day"] = "Jeden Wochentag (Mo-Fri)";
+             dict["de-CH"]["At"] = "Um";
+             dict["de-CH"]["Monday to Friday"] = "Montag bis Freitag";
+             dict["de-CH"]["Start time"] = "Startzeit";
+             
+
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+             //dict["de-CH"]["Every"] = "Alle";
+
+
+
+             dict.Add("en-US", new System.Collections.Generic.Dictionary<string, string>());
+             foreach (string key in this.dict["de-CH"].Keys)
+             {
+                 dict["en-US"][key] = key;
+             }
+
+
+             System.Globalization.CultureInfo[] cis = System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.SpecificCultures);
+             
+
+
+             foreach (System.Globalization.CultureInfo ci in cis)
+             {
+                 if (!dict.ContainsKey(ci.Name))
+                 {
+                     bool bAdd = true;
+
+                     foreach(string strLanguage in dict.Keys)
+                     {
+                         if (0 == string.Compare(strLanguage, 0, ci.Name, 0, 2, true, System.Globalization.CultureInfo.InvariantCulture))
+                         {
+                             System.Console.WriteLine(ci.Name);
+                             dict.Add(ci.Name, dict[strLanguage]);
+                             bAdd = false;
+                             break;
+                         } // End if ci.Name.StartsWith(fis[i].Name
+
+                     } // Next i
+
+                     // if (bAdd) dict.Add(ci.Name, standard);
+                 } // End if (!dict.ContainsKey(ci.Name))
+
+             } // Next ci
+
+
+
+         }
+
+
+    }
+
 
 
     public class OrdinalInfo
     {
-        public static string[] DE = new string[] { "Nullter", "Erster", "Zweiter", "Dritter", "Vierter" };
+        //public static string[] DE_m = new string[] { "Nullter", "Erster", "Zweiter", "Dritter", "Vierter" };
+        public static string[] DE = new string[] { "Nullte", "Erste", "Zweite", "Dritte", "Vierte" };
         public static string[] FR = new string[] { "Zéro-ième", "Premier", "Deuxième", "Troisième", "Quatrième" };
         public static string[] IT = new string[] { "Zeroa", "Prima", "Seconda", "Terza", "Quarta" };
         public static string[] EN = new string[] { "Zeroeth", "First", "Second", "Third", "Fourth" };

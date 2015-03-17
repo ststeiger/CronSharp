@@ -1,10 +1,10 @@
 ﻿var ordinals = {
   "de-CH": [
-    "Nullter",
-    "Erster",
-    "Zweiter",
-    "Dritter",
-    "Vierter"
+    "Nullte",
+    "Erste",
+    "Zweite",
+    "Dritte",
+    "Vierte"
   ],
   "fr-CH": [
     "Zéro-Ième",
@@ -161,11 +161,11 @@
     "4."
   ],
   "de-DE": [
-    "Nullter",
-    "Erster",
-    "Zweiter",
-    "Dritter",
-    "Vierter"
+    "Nullte",
+    "Erste",
+    "Zweite",
+    "Dritte",
+    "Vierte"
   ],
   "fi-FI": [
     "Nolla-nnen",
@@ -588,11 +588,11 @@
     "第四"
   ],
   "de-AT": [
-    "Nullter",
-    "Erster",
-    "Zweiter",
-    "Dritter",
-    "Vierter"
+    "Nullte",
+    "Erste",
+    "Zweite",
+    "Dritte",
+    "Vierte"
   ],
   "en-AU": [
     "Zeroeth",
@@ -630,11 +630,11 @@
     "第四"
   ],
   "de-LU": [
-    "Nullter",
-    "Erster",
-    "Zweiter",
-    "Dritter",
-    "Vierter"
+    "Nullte",
+    "Erste",
+    "Zweite",
+    "Dritte",
+    "Vierte"
   ],
   "en-CA": [
     "Zeroeth",
@@ -665,11 +665,11 @@
     "第四"
   ],
   "de-LI": [
-    "Nullter",
-    "Erster",
-    "Zweiter",
-    "Dritter",
-    "Vierter"
+    "Nullte",
+    "Erste",
+    "Zweite",
+    "Dritte",
+    "Vierte"
   ],
   "en-NZ": [
     "Zeroeth",

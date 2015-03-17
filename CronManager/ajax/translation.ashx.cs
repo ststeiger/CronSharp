@@ -84,10 +84,13 @@ namespace CronManager.ajax
         public void ProcessRequest(HttpContext context)
         {
             OrdinalInfo oi = new OrdinalInfo();
+            TranslationMatrix tm = new TranslationMatrix();
+
 
             context.Response.ContentType = "text/plain";
             //context.Response.ContentType = "application/json";
-            string strResult = ToJSON(oi.dict);
+            //string strResult = ToJSON(oi.dict);
+            string strResult = ToJSON(tm.dict);
             System.Console.WriteLine(strResult);
             context.Response.Write(strResult);
         }

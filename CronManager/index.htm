@@ -15,19 +15,19 @@
         .ContentTab
         {
             display: none;
-            width: 620px;
+            width: 630px;
             height: 180px;
-            background-color: #FD0;
+            background-color: #FFFFFF;
         }
 
 
         .TitleTab
         {
-            width: 620px; 
-            overflow-x: auto; 
-            display: block; 
-            white-space: nowrap; 
-            background-color: #E5E5E5;
+            width: 630px;
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+            /*background-color: #E5E5E5;*/
         }
 
 
@@ -40,42 +40,36 @@
         .rbTab1:checked ~ .ContentTab1
         {
             display: block;
-            background-color: #FD0;
         }
 
 
         .rbTab2:checked ~ .ContentTab2
         {
             display: block;
-            background-color: #FD0;
         }
 
 
         .rbTab3:checked ~ .ContentTab3
         {
             display: block;
-            background-color: #FD0;
         }
 
 
         .rbTab4:checked ~ .ContentTab4
         {
             display: block;
-            background-color: #FD0;
         }
 
 
         .rbTab5:checked ~ .ContentTab5
         {
             display: block;
-            background-color: #FD0;
         }
 
 
         .rbTab6:checked ~ .ContentTab6
         {
             display: block;
-            background-color: #FD0;
         }
 
 
@@ -86,65 +80,93 @@
             margin: 0px;
             padding-left: 10px;
             padding-right: 10px;
-            padding-top: 3px;
-            padding-bottom: 3px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             font-weight: bold;
-            border-right: 1px solid white;
-            border-bottom: 1px solid white;
-            background-color: #ECECEC;
-            color: #919191;
+            /*background-color: #ECECEC;
+                color: #919191;
+                */
+            background-color: #FFFFFF;
+            color: #08c;
             /*color: #0066cc;*/
             /*color: #1e90ff;*/
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
+
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+
+            -webkit-border-radius: 4px 4px 0 0;
+            -moz-border-radius: 4px 4px 0 0;
+            border-radius: 4px 4px 0 0;
+
+            /*
+            border-right: 1px solid white;
+            border: 1px solid #ddd;
+            */
+            border-bottom: 1px solid #ddd;
         }
+
+
+        .rbTab1_old:checked ~ div .tabtitle1
+        {
+            background-color: hotpink;
+            color: white;
+            border-bottom-color: transparent;
+        }
+
+
 
 
         .rbTab1:checked ~ div .tabtitle1
         {
-            background-color: hotpink;
-            color: white;
+            color: #555;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
         }
 
 
         .rbTab2:checked ~ div .tabtitle2
         {
-            background-color: hotpink;
-            color: white;
+            color: #555;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
         }
 
 
         .rbTab3:checked ~ div .tabtitle3
         {
-            background-color: hotpink;
-            color: white;
+            color: #555;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
         }
 
 
         .rbTab4:checked ~ div .tabtitle4
         {
-            background-color: hotpink;
-            color: white;
+            color: #555;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
         }
 
 
         .rbTab5:checked ~ div .tabtitle5
         {
-            background-color: hotpink;
-            color: white;
+            color: #555;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
         }
 
 
         .rbTab6:checked ~ div .tabtitle6
         {
-            background-color: hotpink;
-            color: white;
+            color: #555;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
         }
 
 
@@ -168,18 +190,18 @@
             text-align: left;
             white-space: normal;
             background-color: #fff;
-
+            /*
             border: 1px solid #ccc;
+            
+            */
             border: 1px solid rgba(0,0,0,0.2);
-
+            
             -webkit-border-radius: 6px;
             -moz-border-radius: 6px;
             border-radius: 6px;
-
             -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-
             -webkit-background-clip: padding-box;
             -moz-background-clip: padding;
             background-clip: padding-box;
@@ -280,132 +302,129 @@
         <input id="t5" class="rbTab rbTab5" name="selTab" type="radio" value="Tab 5" />
         <input id="t6" class="rbTab rbTab6" name="selTab" type="radio" value="Tab 6" />
 
-        <div class="TitleTab">
+        <div style="height: 10px;">&nbsp;</div>
+
+        <div style="display: block;height: 180px; padding-left: 10px; padding-right: 10px;">
+
+            <div class="TitleTab">
                <label id="lblT1" class="tabtitle tabtitle1" for="t1">Minuten</label><!--
             --><label id="lblT2" class="tabtitle tabtitle2" for="t2">St&uuml;ndlich</label><!--
             --><label id="lblT3" class="tabtitle tabtitle3" for="t3">T&auml;glich</label><!--
             --><label id="lblT4" class="tabtitle tabtitle4" for="t4">W&ouml;chentlich</label><!--
             --><label id="lblT5" class="tabtitle tabtitle5" for="t5">Monatlich</label><!--
             --><label id="lblT6" class="tabtitle tabtitle6" for="t6">J&auml;hrlich</label>
-        </div>
-
-        <div class="ContentTab ContentTab1">
-            <div class="padLayout">
-                Every&nbsp;
-                <input id="MinutesInput" type="text" value="1" style="width: 40px">&nbsp;minute(s)
             </div>
-        </div>
 
-        <!-- Hourly -->
-        <div class="ContentTab ContentTab2">
-            <div class="padLayout">
-                <div class="well well-small">
-                    <input type="radio" value="1" name="HourlyRadio" checked="checked">&nbsp;Every&nbsp;
-                    <input id="HoursInput" type="text" value="1" style="width: 40px">&nbsp;hour(s)
+            <div class="ContentTab ContentTab1">
+                <div class="padLayout">
+                    <span class="translate">Every</span>&nbsp;
+                    <input id="MinutesInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">minute(s)</span>
                 </div>
-                <div class="well well-small">
-                    <input type="radio" value="2" name="HourlyRadio">&nbsp;At&nbsp;
-                    <select id="selHourlyHours" class="hours" style="width: 60px"></select>
-                    <select id="selHourlyMinutes" class="minutes" style="width: 60px"></select>
-                </div>
-            </div>        
-        </div>
-
-        <!-- Daily-->
-        <div class="ContentTab ContentTab3">
-            <div class="padLayout">
-
-                <div class="well well-small">
-                    <input type="radio" name="DailyRadio" value="1" checked="checked">&nbsp;Every&nbsp;
-                    <input id="DaysInput" type="text" value="1" style="width: 40px">&nbsp;day(s)
-                </div>
-                <div class="well well-small">
-                    <input type="radio" name="DailyRadio" value="2">&nbsp;Every week day&nbsp;
-                </div>
-
-                <div>
-                    Start time&nbsp;
-                    <select id="selDailyHours" class="hours" style="width: 60px"></select>
-                    <select id="selDailyMinutes" class="minutes" style="width: 60px"></select>
-                </div>
-
             </div>
-        </div>
 
-        <!-- Weekly -->
-        <div class="ContentTab ContentTab4">
-            <div class="padLayout">
-                <div id="divWeeklyDays" class="well well-small">
-                    <div class="horizontal">
-                        <input id="cbMON" type="checkbox" value="MON"><label id="lblMON" for="cbMON">&nbsp;Monday</label><br />
-                        <input id="cbWED" type="checkbox" value="WED"><label id="lblWED" for="cbWED">&nbsp;Wednesday</label><br />
-                        <input id="cbFRI" type="checkbox" value="FRI"><label id="lblFRI" for="cbFRI">&nbsp;Friday</label><br />
-                        <input id="cbSUN" type="checkbox" value="SUN"><label id="lblSUN" for="cbSUN">&nbsp;Sunday</label>
+            <!-- Hourly -->
+            <div class="ContentTab ContentTab2">
+                <div class="padLayout">
+                    <div class="well well-small">
+                        <input type="radio" value="1" name="HourlyRadio" checked="checked">&nbsp;<span class="translate">Every</span>&nbsp;
+                        <input id="HoursInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">hour(s)</span>
                     </div>
-
-                    <div class="horizontal">
-                        <input id="cbTUE" type="checkbox" value="TUE"><label id="lblTUE" for="cbTUE">&nbsp;Tuesday</label><br />
-                        <input id="cbTHU" type="checkbox" value="THU"><label id="lblTHU" for="cbTHU">&nbsp;Thursday</label><br />
-                        <input id="cbSAT" type="checkbox" value="SAT"><label id="lblSAT" for="cbSAT">&nbsp;Saturday</label><br />
-                        <input id="cbSND" type="checkbox" value="SND" style="visibility: hidden;"><label for="cbSND">&nbsp;</label> <!-- Saint-Neverlings-Day -->
+                    <div class="well well-small">
+                        <input type="radio" value="2" name="HourlyRadio">&nbsp;<span class="translate">At</span>&nbsp;
+                        <select id="selHourlyHours" class="hours" style="width: 60px"></select>
+                        <select id="selHourlyMinutes" class="minutes" style="width: 60px"></select>
                     </div>
                 </div>
-
-                Start time&nbsp;
-
-                <select id="selWeeklyHours" class="hours" style="width: 60px"></select>
-                <select id="selWeeklyMinutes" class="minutes" style="width: 60px"></select>
             </div>
 
-        </div>
+            <!-- Daily-->
+            <div class="ContentTab ContentTab3">
+                <div class="padLayout">
 
-        <div class="ContentTab ContentTab5">
-            <div class="padLayout">
-                <div class="well well-small">
-                    <input type="radio" value="1" name="MonthlyRadio" checked="checked">&nbsp;Day&nbsp;
-                    <input id="DayOfMOnthInput" type="text" value="1" style="width: 40px">&nbsp;of every&nbsp;
-                    <input id="MonthInput" type="text" value="1" style="width: 40px">&nbsp;month(s)
-                </div>
-                <div class="well well-small">
-                    <input type="radio" value="2" name="MonthlyRadio">&nbsp;
-                    <select id="WeekDay" class="day-order-in-month" style="width: 80px">
-                        <option value="1">First</option>
-                        <option value="2">Second</option>
-                        <option value="3">Thrid</option>
-                        <option value="4">Fourth</option>
-                    </select>
-                    <select id="selDayInWeekOrder" class="week-days" style="width: 100px"></select>&nbsp;of every&nbsp;
-                    <input id="EveryMonthInput" type="text" value="1" style="width: 40px">&nbsp;month(s)
-                </div>
+                    <div class="well well-small">
+                        <input type="radio" name="DailyRadio" value="1" checked="checked">&nbsp;<span class="translate">Every</span>&nbsp;
+                        <input id="DaysInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">day(s)</span>
+                    </div>
+                    <div class="well well-small">
+                        <input type="radio" name="DailyRadio" value="2">&nbsp;<span class="translate">Every week day</span>&nbsp;
+                    </div>
 
-                Start time&nbsp;
-                <select id="selMonthlyHours" class="hours" style="width: 60px"></select>
-                <select id="selMonthlyMinutes" class="minutes" style="width: 60px"></select>
+                    <div>
+                        <span class="translate">Start time</span>&nbsp;
+                        <select id="selDailyHours" class="hours" style="width: 60px"></select>
+                        <select id="selDailyMinutes" class="minutes" style="width: 60px"></select>
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <div class="ContentTab ContentTab6">
-            <div class="padLayout">
-                <div class="well well-small">
-                    <input type="radio" value="1" name="YearlyRadio" checked="checked">&nbsp;Every&nbsp;
-                    <select id="selMonthsOfYear" class="months" style="width: 150px"></select>&nbsp;in day&nbsp;
-                    <input id="YearInput" type="text" value="1" style="width: 40px">
+            <!-- Weekly -->
+            <div class="ContentTab ContentTab4">
+                <div class="padLayout">
+                    <div id="divWeeklyDays" class="well well-small">
+                        <div class="horizontal">
+                            <input id="cbMON" type="checkbox" value="MON"><label id="lblMON" for="cbMON">&nbsp;Monday</label><br />
+                            <input id="cbWED" type="checkbox" value="WED"><label id="lblWED" for="cbWED">&nbsp;Wednesday</label><br />
+                            <input id="cbFRI" type="checkbox" value="FRI"><label id="lblFRI" for="cbFRI">&nbsp;Friday</label><br />
+                            <input id="cbSUN" type="checkbox" value="SUN"><label id="lblSUN" for="cbSUN">&nbsp;Sunday</label>
+                        </div>
+
+                        <div class="horizontal">
+                            <input id="cbTUE" type="checkbox" value="TUE"><label id="lblTUE" for="cbTUE">&nbsp;Tuesday</label><br />
+                            <input id="cbTHU" type="checkbox" value="THU"><label id="lblTHU" for="cbTHU">&nbsp;Thursday</label><br />
+                            <input id="cbSAT" type="checkbox" value="SAT"><label id="lblSAT" for="cbSAT">&nbsp;Saturday</label><br />
+                            <input id="cbSND" type="checkbox" value="SND" style="visibility: hidden;"><label for="cbSND">&nbsp;</label> <!-- Saint-Neverlings-Day -->
+                        </div>
+                    </div>
+
+                    <span class="translate">Start time</span>&nbsp;
+
+                    <select id="selWeeklyHours" class="hours" style="width: 60px"></select>
+                    <select id="selWeeklyMinutes" class="minutes" style="width: 60px"></select>
                 </div>
-                <div class="well well-small">
-                    <input type="radio" value="2" name="YearlyRadio">&nbsp;The&nbsp;
-                    <select id="selDayOrderInYear" class="day-order-in-month" style="width: 80px">
-                        <option value="1">First</option>
-                        <option value="2">Second</option>
-                        <option value="3">Thrid</option>
-                        <option value="4">Fourth</option>
-                    </select>
-                    <select id="selDayWeekForYear" class="week-days" style="width: 100px"></select>&nbsp;of&nbsp;
-                    <select id="selMonthsOfYear2" class="months" style="width: 110px"></select>
-                </div>
-                Start time&nbsp;
-                <select id="selYearlyHours" class="hours" style="width: 60px"></select>
-                <select id="selYearlyMinutes" class="minutes" style="width: 60px"></select>
+
             </div>
+
+            <div class="ContentTab ContentTab5">
+                <div class="padLayout">
+                    <div class="well well-small">
+                        <input type="radio" value="1" name="MonthlyRadio" checked="checked">&nbsp;<span class="translate">Day</span>&nbsp;
+                        <input id="DayOfMOnthInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">of every</span>&nbsp;
+                        <input id="MonthInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">month(s)</span>
+                    </div>
+                    <div class="well well-small">
+                        <input type="radio" value="2" name="MonthlyRadio">&nbsp;<span>Der</span>&nbsp;
+                        <select id="selOrdinalWeekDay" class="day-order-in-month" style="width: 80px"></select>
+                        <select id="selDayInWeekOrder" class="week-days" style="width: 100px"></select>&nbsp;<span class="translate">of every</span>&nbsp;
+                        <input id="EveryMonthInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">month(s)</span>
+                    </div>
+
+                    <span class="translate">Start time</span>&nbsp;
+                    <select id="selMonthlyHours" class="hours" style="width: 60px"></select>
+                    <select id="selMonthlyMinutes" class="minutes" style="width: 60px"></select>
+                </div>
+            </div>
+
+            <div class="ContentTab ContentTab6">
+                <div class="padLayout">
+                    <div class="well well-small">
+                        <input type="radio" value="1" name="YearlyRadio" checked="checked">&nbsp;<span class="translate">Every</span>&nbsp;
+                        <select id="selMonthsOfYear" class="months" style="width: 150px"></select>&nbsp;<span class="translate">in day</span>&nbsp;
+                        <input id="YearInput" type="text" value="1" style="width: 40px">
+                    </div>
+                    <div class="well well-small">
+                        <input type="radio" value="2" name="YearlyRadio">&nbsp;<span class="translate">The</span>&nbsp;
+                        <select id="selDayOrderInYear" class="day-order-in-month" style="width: 80px"></select>
+                        <select id="selDayWeekForYear" class="week-days" style="width: 100px"></select>&nbsp;<span class="translate">of</span>&nbsp;
+                        <select id="selMonthsOfYear2" class="months" style="width: 110px"></select>
+                    </div>
+                    <span class="translate">Start time</span>&nbsp;
+                    <select id="selYearlyHours" class="hours" style="width: 60px"></select>
+                    <select id="selYearlyMinutes" class="minutes" style="width: 60px"></select>
+                </div>
+            </div>
+
+        
         </div>
     </div>
 
@@ -517,8 +536,28 @@
 
             select.insertAdjacentHTML('beforeEnd', options.join('\n'));
         }
+
+
+
+        function fillOrdinalWeekDay(id)
+        {
+            var select = document.getElementById(id);
+            var options = [];
+            var option = document.createElement('option');
+
+            for (var i = 1; i < ordinals["de-CH"].length; ++i)
+            {
+                //var data = '<option value="' + escapeHTML(i) +'">" + escapeHTML(i) + "</option>';
+                option.text = ordinals["de-CH"][i];
+                option.value = i;
+                options.push(option.outerHTML);
+            }
+
+            select.insertAdjacentHTML('beforeEnd', options.join('\n'));
+        }
         
         
+
 
 
         //console.log(monthsBase1["de-CH"][1]);
@@ -599,6 +638,79 @@
         fillHours("selYearlyHours");
         fillMins("selYearlyMinutes");
         
+
+        fillOrdinalWeekDay("selOrdinalWeekDay");
+        fillOrdinalWeekDay("selDayOrderInYear");
+        
+
+        var tmSpans = {
+            "de-CH": {
+                "Every": "Alle",
+                "minute(s)": "Minute(n)",
+                "day(s)": "Tag(e)",
+                "hour(s)": "Stunde(n)",
+                "month(s)": "Monat(e)",
+                "Start Time": "Startzeit",
+                "Day": "Tag",
+                "of every": "alle",
+                "The": "Der",
+                "in day": "am Tag",
+                "of": "vom",
+                "Every week day": "Jeden Wochentag (Mo-Fri)",
+                "At": "Um",
+                "Monday to Friday": "Montag bis Freitag",
+                "Start time": "Startzeit"
+            },
+            "en-US": {
+                "Every": "Every",
+                "minute(s)": "minute(s)",
+                "day(s)": "day(s)",
+                "hour(s)": "hour(s)",
+                "month(s)": "month(s)",
+                "Start Time": "Start Time",
+                "Day": "Day",
+                "of every": "of every",
+                "The": "The",
+                "in day": "in day",
+                "of": "of",
+                "Every week day": "Every week day",
+                "At": "At",
+                "Monday to Friday": "Monday to Friday",
+                "Start time": "Start time"
+            }
+        }
+        ;
+
+
+        function getTranslation(key)
+        {
+            var ret = tmSpans["de-CH"][key];
+            if (ret != null)
+                return ret;
+
+            return "404: " + key;
+        }
+
+
+        var x = document.getElementsByClassName("translate");
+        for (var i = 0; i < x.length; ++i)
+        {
+            console.log(x[i].innerText);
+            // document.getElementById("myspan").textContent="newtext";
+
+            console.log();
+            tmSpans["de-CH"][x[i].textContent]
+
+            if ('textContent' in x[i])
+                x[i].textContent = getTranslation([x[i].textContent]);
+            else
+                x[i].innerText = getTranslation(x[i].innerText);
+            
+        }
+
+        
+
+
         // document.getElementById("selMins").innerHTML = "";
         // ClearOptionsFast("selMins");
     </script>
