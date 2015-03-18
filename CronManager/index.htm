@@ -273,6 +273,51 @@
             padding: 10px;
         }
 
+        textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus
+        {
+            border-color: rgba(82,168,236,0.8);
+            outline: 0;
+            outline: thin dotted \9;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+            -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+        }
+
+        select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+        {
+            /*
+            display: inline-block;
+            
+            height: 20px;
+
+            
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 20px;
+                vertical-align: middle;
+            */
+            padding: 4px 6px;
+            color: #555;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+
+        textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+        {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+            -webkit-transition: border linear .2s,box-shadow linear .2s;
+            -moz-transition: border linear .2s,box-shadow linear .2s;
+            -o-transition: border linear .2s,box-shadow linear .2s;
+            transition: border linear .2s,box-shadow linear .2s;
+        }
+
+
     </style>
 </head>
 <body>
@@ -285,7 +330,10 @@
          http://stackoverflow.com/questions/16677539/how-to-have-multiple-divs-on-one-line-with-even-spacing
     -->
 
-    <div class="popover">
+    <input id="txtCronTab" type="text" value="" />
+    <br /><br />
+
+    <div id="divCronTab" class="popover">
         <h3 class="popover-title">Generate cron</h3>
         
         <div class="padContent">
@@ -417,7 +465,6 @@
         </div>
     </div>
 
-    <input type="button" onclick="generate();" value="Update" />
     <!--
     <div class="popover fade bottom in" style="width: 500px; max-width: 500px !important; display: block;">
         <h3 class="popover-title">Generate cron</h3>
@@ -425,6 +472,42 @@
     -->
 
     <script type="text/javascript">
+
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+        function attachEvent(element, event, callbackFunction)
+        {
+            if (element.addEventListener)
+            {
+                element.addEventListener(event, callbackFunction, false);
+            }
+            else if (element.attachEvent)
+            {
+                element.attachEvent('on' + event, callbackFunction);
+            }
+
+        };
+
+
+        function removeEvent(element, event, callbackFunction)
+        {
+            if (element.removeEventListener)
+            {
+                element.removeEventListener(event, callbackFunction, false);
+            }
+            else if (element.detachEvent)
+            {
+                element.detachEvent('on' + event, callbackFunction);
+            }
+
+        };
+
+        function pad(num, size)
+        {
+            var s = num + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
 
         function escapeHTML(str)
         {
@@ -448,12 +531,6 @@
             return newSelectObj;
         }
 
-        function pad(num, size)
-        {
-            var s = num + "";
-            while (s.length < size) s = "0" + s;
-            return s;
-        }
         
         function fillMonths(id)
         {
@@ -681,19 +758,18 @@
         }
 
 
-        var x = document.getElementsByClassName("translate");
-        for (var i = 0; i < x.length; ++i)
+        var spans = document.getElementsByClassName("translate");
+        for (var i = 0; i < spans.length; ++i)
         {
-            console.log(x[i].innerText);
+            // console.log(spans[i].innerText);
             // document.getElementById("myspan").textContent="newtext";
 
-            console.log();
-            tmSpans["de-CH"][x[i].textContent]
+            tmSpans["de-CH"][spans[i].textContent]
 
-            if ('textContent' in x[i])
-                x[i].textContent = getTranslation([x[i].textContent]);
+            if ('textContent' in spans[i])
+                spans[i].textContent = getTranslation(spans[i].textContent);
             else
-                x[i].innerText = getTranslation(x[i].innerText);
+                spans[i].innerText = getTranslation(spans[i].innerText);
             
         }
 
@@ -796,12 +872,28 @@
                     }
                     break;
             }
-
-            console.log(results);
+            
+            document.getElementById("txtCronTab").value = results;
         }
 
 
+        function setEventHandlers()
+        {
+            var a = document.querySelectorAll("#divCronTab select,input");
+            
+            for (var i = 0; i < a.length; ++i)
+            {
+                attachEvent(a[i], "change", generate);
+                attachEvent(a[i], "paste", generate);
+                attachEvent(a[i], "input", generate);
+                attachEvent(a[i], "focus", generate);
+            }
 
+        }
+
+
+        setEventHandlers();
+        generate();
 
 
         // document.getElementById("selMins").innerHTML = "";
