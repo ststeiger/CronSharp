@@ -76,3 +76,37 @@ http://www.srf.ch/play/radio/popupaudioplayer?id=907821a6-5c6e-4437-8301-f51464a
 
 
 
+
+// console.log(monthsBase1["de-CH"][1]);
+// console.log(monthsBase1["de-CH"][8]);
+// console.log(monthsBase1["de-CH"][12]);
+
+var now = new Date();
+var h = now.getHours();
+var m = now.getMinutes();
+var s = now.getSeconds();
+
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var dayAbbrev = ['', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+
+
+Date.prototype.getMonthName = function ()
+{
+    return months[this.getMonth()];
+};
+
+Date.prototype.getDayName = function ()
+{
+    return days[this.getDay()];
+};
+
+
+// console.log("Today is " + daysBaseScript["de-CH"][now.getDay()]);
+// console.log("Today is " + monthsBase0["de-CH"][now.getMonth()]);
+
+// console.log(daysBaseScript["de-CH"][0]);
+// console.log(daysBaseScript["de-CH"][6]);
+
+// console.log(daysBase0["de-CH"][0]);
+// console.log(daysBase0["de-CH"][6]);

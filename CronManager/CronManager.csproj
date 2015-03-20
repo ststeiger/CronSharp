@@ -69,32 +69,28 @@
     <Content Include="cronGen-master\cronGen.min.js" />
     <Content Include="cronGen-master\Demo.html" />
     <Content Include="cronGen-master\DemoBS3.html" />
-    <Content Include="days.js" />
+    <Content Include="Scripts\days.js" />
     <Content Include="help.htm" />
     <Content Include="Libs\Newtonsoft.Json.dll" />
-    <Content Include="months.js" />
-    <Content Include="ordinals.js" />
-    <Content Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\months.js" />
+    <Content Include="Scripts\ajax_compat.js" />
+    <Content Include="Scripts\reqwest.js" />
+    <Content Include="Scripts\translations.js" />
+    <Content Include="Scripts\ordinals.js" />
     <Content Include="index.htm" />
     <Content Include="syntaxInfo.txt" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ajax\JSON.cs" />
     <Compile Include="ajax\OrdinalInfo.cs" />
+    <Compile Include="ajax\SaveConfig.ashx.cs">
+      <DependentUpon>SaveConfig.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ajax\translation.ashx.cs">
       <DependentUpon>translation.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -106,12 +102,19 @@
     <Content Include="cronGen-master\LICENSE.md" />
     <Content Include="cronGen-master\README.md" />
     <Content Include="ajax\translation.ashx" />
+    <Content Include="ajax\SaveConfig.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmbeddedWebServer\EmbeddedWebServer.csproj">
+      <Project>{02342998-8696-439c-87b0-dfb3abc43f6e}</Project>
+      <Name>EmbeddedWebServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

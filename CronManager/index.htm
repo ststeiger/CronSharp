@@ -6,10 +6,20 @@
     <meta charset="utf-8" />
     <title>Tabs</title>
 
-    <script type="text/javascript" src="days.js" charset="utf-8"></script>
-    <script type="text/javascript" src="months.js" charset="utf-8"></script>
-    <script type="text/javascript" src="ordinals.js" charset="utf-8"></script>
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
 
+    <script type="text/javascript" src="Scripts/reqwest.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Scripts/ajax_compat.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="Scripts/days.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Scripts/months.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Scripts/ordinals.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Scripts/translations.js" charset="utf-8"></script>
+    
 
     <style type="text/css" media="all">
         .ContentTab
@@ -178,18 +188,17 @@
             text-align: left;
             white-space: normal;
             background-color: #fff;
-            /*
-            border: 1px solid #ccc;
-            
-            */
+            /* border: 1px solid #ccc; */
             border: 1px solid rgba(0,0,0,0.2);
             
             -webkit-border-radius: 6px;
             -moz-border-radius: 6px;
             border-radius: 6px;
+
             -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+
             -webkit-background-clip: padding-box;
             -moz-background-clip: padding;
             background-clip: padding-box;
@@ -200,11 +209,12 @@
         {
             display: block;
             font-size: 1.17em;
+            font-weight: bold;
+
             -webkit-margin-before: 1em;
             -webkit-margin-after: 1em;
             -webkit-margin-start: 0px;
             -webkit-margin-end: 0px;
-            font-weight: bold;
         }
 
 
@@ -217,6 +227,7 @@
             line-height: 18px;
             background-color: #f7f7f7;
             border-bottom: 1px solid #ebebeb;
+
             -webkit-border-radius: 5px 5px 0 0;
             -moz-border-radius: 5px 5px 0 0;
             border-radius: 5px 5px 0 0;
@@ -230,9 +241,11 @@
             margin-bottom: 20px;
             background-color: #f5f5f5;
             border: 1px solid #e3e3e3;
+
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
             border-radius: 4px;
+
             -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
             -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
@@ -294,7 +307,7 @@
             margin-bottom: 10px;
             font-size: 14px;
             line-height: 20px;
-                vertical-align: middle;
+            vertical-align: middle;
             */
             padding: 4px 6px;
             color: #555;
@@ -308,9 +321,11 @@
         {
             background-color: #fff;
             border: 1px solid #ccc;
+
             -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
             -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+
             -webkit-transition: border linear .2s,box-shadow linear .2s;
             -moz-transition: border linear .2s,box-shadow linear .2s;
             -o-transition: border linear .2s,box-shadow linear .2s;
@@ -321,10 +336,9 @@
     </style>
 </head>
 <body>
+    <a href="cronGen-master/Demo.html" target="_blank">cronGen</a><br />
     <a href="ajax/translation.ashx" target="_blank">Translation</a><br />
-    <a href="syntaxInfo.txt" target="_blank">Syntaxinfo</a><br />
-    <a href="cronGen-master/Demo.html" target="_blank">cronGen</a><br /><br />
-    
+    <a href="syntaxInfo.txt" target="_blank">Syntaxinfo</a><br /><br />
 
     <!--
          http://stackoverflow.com/questions/16677539/how-to-have-multiple-divs-on-one-line-with-even-spacing
@@ -426,9 +440,10 @@
                 <div class="padLayout">
                     <div class="well well-small">
                         <input type="radio" value="1" name="MonthlyRadio" checked="checked">&nbsp;<span class="translate">Day</span>&nbsp;
-                        <input id="DayOfMOnthInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">of every</span>&nbsp;
+                        <select id="selDayInMonth" class="day-order-in-month" style="width: 80px"></select>&nbsp;<span class="translate">of every</span>&nbsp;
                         <input id="MonthInput" type="text" value="1" style="width: 40px">&nbsp;<span class="translate">month(s)</span>
                     </div>
+
                     <div class="well well-small">
                         <input type="radio" value="2" name="MonthlyRadio">&nbsp;<span>Der</span>&nbsp;
                         <select id="selOrdinalWeekDay" class="day-order-in-month" style="width: 80px"></select>
@@ -465,42 +480,123 @@
         </div>
     </div>
 
+
+    <style type="text/css">
+        .btn-primary
+        {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active
+        {
+            color: #fff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+        .btn
+        {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .btn:focus 
+        {
+            outline: thin dotted;
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+
+        .btn:hover
+        {
+            color: #FFFC00;
+            text-decoration: none;
+        }
+
+        .btn:active 
+        {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        }
+
+        fieldset[disabled] .btn
+        {
+            pointer-events: none;
+            cursor: not-allowed;
+            filter: alpha(opacity=65);
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            opacity: .65;
+        }
+
+
+
+    </style>
+
     <!--
     <div class="popover fade bottom in" style="width: 500px; max-width: 500px !important; display: block;">
         <h3 class="popover-title">Generate cron</h3>
     </div>
     -->
+    <div style="clear: both; height: 25px;"></div>
+    <input id="btnSave" type="button" value="Speichern" class="btn btn-primary" />
+
 
     <script type="text/javascript">
-
+        var dayAbbrev = ['', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
         // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
-        function attachEvent(element, event, callbackFunction)
+        function attachEvent(element, event, cbfn)
         {
+            if (typeof element == 'string')
+                element = document.getElementById(element);
+
             if (element.addEventListener)
             {
-                element.addEventListener(event, callbackFunction, false);
+                element.addEventListener(event, cbfn, false);
             }
             else if (element.attachEvent)
             {
-                element.attachEvent('on' + event, callbackFunction);
+                element.attachEvent('on' + event, cbfn);
             }
 
-        };
+        }
 
 
-        function removeEvent(element, event, callbackFunction)
+        function removeEvent(element, event, cbfn)
         {
             if (element.removeEventListener)
             {
-                element.removeEventListener(event, callbackFunction, false);
+                element.removeEventListener(event, cbfn, false);
             }
             else if (element.detachEvent)
             {
-                element.detachEvent('on' + event, callbackFunction);
+                element.detachEvent('on' + event, cbfn);
             }
 
-        };
+        }
+
 
         function pad(num, size)
         {
@@ -508,6 +604,7 @@
             while (s.length < size) s = "0" + s;
             return s;
         }
+
 
         function escapeHTML(str)
         {
@@ -520,6 +617,7 @@
             // div.removeChild(text);
             return ret;
         }
+
 
         // http://www.somacon.com/p542.php
         function ClearOptionsFast(id)
@@ -549,6 +647,29 @@
 
             select.insertAdjacentHTML('beforeEnd', options.join('\n'));
         }
+
+
+        function fillDays(id)
+        {
+            var select = document.getElementById(id);
+            var options = [];
+            var option = document.createElement('option');
+
+            for (var i = 1; i < 32; ++i)
+            {
+                //option.text = monthsBase1["de-CH"][i];
+                option.text = i;
+                option.value = i;
+                options.push(option.outerHTML);
+            }
+
+            option.text = tmTexts["de-CH"]["Last"];
+            option.value = "L";
+            options.push(option.outerHTML);
+
+            select.insertAdjacentHTML('beforeEnd', options.join('\n'));
+        }
+
 
         function fillWeekdays(id)
         {
@@ -615,52 +736,14 @@
             {
                 //var data = '<option value="' + escapeHTML(i) +'">" + escapeHTML(i) + "</option>';
                 option.text = ordinals["de-CH"][i];
-                option.value = i;
+                option.value = i == 5 ? "L" : i;
                 options.push(option.outerHTML);
             }
 
             select.insertAdjacentHTML('beforeEnd', options.join('\n'));
         }
         
-        
 
-
-
-        //console.log(monthsBase1["de-CH"][1]);
-        ////console.log(monthsBase1["de-CH"][8]);
-        //console.log(monthsBase1["de-CH"][12]);
-
-        var now = new Date();
-        var h = now.getHours();
-        var m = now.getMinutes();
-        var s = now.getSeconds();
-
-        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var dayAbbrev = ['', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-
-
-        Date.prototype.getMonthName = function ()
-        {
-            return months[this.getMonth()];
-        };
-
-        Date.prototype.getDayName = function ()
-        {
-            return days[this.getDay()];
-        };
-
-        //console.log("Today is " + daysBaseScript["de-CH"][now.getDay()])
-        //console.log("Today is " + monthsBase0["de-CH"][now.getMonth()])
-
-
-        //console.log(daysBaseScript["de-CH"][0]);
-        //console.log(daysBaseScript["de-CH"][6]);
-
-        //console.log(daysBase0["de-CH"][0]);
-        //console.log(daysBase0["de-CH"][6]);
-
-        
         function setWeekDaysLabels()
         {
             for (var i = 1; i < 8; ++i)
@@ -675,7 +758,7 @@
                         ele.removeChild(ele.firstChild);
                     }
 
-                    //var text = document.createTextNode(" " +daysBase1["de-CH"][i]);
+                    //var text = document.createTextNode(" " + daysBase1["de-CH"][i]);
                     var text = document.createTextNode("\u00A0" + daysBase1["de-CH"][i]); // nbsp
                     ele.appendChild(text);
                 }
@@ -705,52 +788,17 @@
         fillMins("selYearlyMinutes");
         
 
+        fillDays("selDayInMonth");
+
+
         fillOrdinalWeekDay("selOrdinalWeekDay");
         fillOrdinalWeekDay("selDayOrderInYear");
         
 
-        var tmSpans = {
-            "de-CH": {
-                "Every": "Alle",
-                "minute(s)": "Minute(n)",
-                "day(s)": "Tag(e)",
-                "hour(s)": "Stunde(n)",
-                "month(s)": "Monat(e)",
-                "Start Time": "Startzeit",
-                "Day": "Tag",
-                "of every": "alle",
-                "The": "Der",
-                "in day": "am Tag",
-                "of": "vom",
-                "Every week day": "Jeden Wochentag (Mo-Fri)",
-                "At": "Um",
-                "Monday to Friday": "Montag bis Freitag",
-                "Start time": "Startzeit"
-            },
-            "en-US": {
-                "Every": "Every",
-                "minute(s)": "minute(s)",
-                "day(s)": "day(s)",
-                "hour(s)": "hour(s)",
-                "month(s)": "month(s)",
-                "Start Time": "Start Time",
-                "Day": "Day",
-                "of every": "of every",
-                "The": "The",
-                "in day": "in day",
-                "of": "of",
-                "Every week day": "Every week day",
-                "At": "At",
-                "Monday to Friday": "Monday to Friday",
-                "Start time": "Start time"
-            }
-        }
-        ;
-
 
         function getTranslation(key)
         {
-            var ret = tmSpans["de-CH"][key];
+            var ret = tmTexts["de-CH"][key];
             if (ret != null)
                 return ret;
 
@@ -764,8 +812,6 @@
             // console.log(spans[i].innerText);
             // document.getElementById("myspan").textContent="newtext";
 
-            tmSpans["de-CH"][spans[i].textContent]
-
             if ('textContent' in spans[i])
                 spans[i].textContent = getTranslation(spans[i].textContent);
             else
@@ -773,7 +819,6 @@
             
         }
 
-        
 
         var generate = function ()
         {
@@ -788,7 +833,6 @@
                     activeTab = tabs[activeTab];
                     break;
                 }
-                
             }
 
 
@@ -840,7 +884,7 @@
                     switch (document.querySelector("input[type='radio'][name='MonthlyRadio']:checked").value)
                     {
                         case "1":
-                            results = "0 " + document.getElementById("selMonthlyMinutes").value + " " + document.getElementById("selMonthlyHours").value + " " + document.getElementById("DayOfMOnthInput").value + " 1/" + document.getElementById("MonthInput").value + " ? *";
+                            results = "0 " + document.getElementById("selMonthlyMinutes").value + " " + document.getElementById("selMonthlyHours").value + " " + document.getElementById("selDayInMonth").value + " 1/" + document.getElementById("MonthInput").value + " ? *";
                             break;
                         case "2":
                             results = "0 " + document.getElementById("selMonthlyMinutes").value + " " + document.getElementById("selMonthlyHours").value + " ? 1/" + document.getElementById("EveryMonthInput").value + " " + document.getElementById("selDayInWeekOrder").value + "#" + document.getElementById("selOrdinalWeekDay").value + " *";
@@ -871,10 +915,10 @@
                             break;
                     }
                     break;
-            }
+            } // End switch (activeTab)
             
             document.getElementById("txtCronTab").value = results;
-        }
+        } // End Function generate
 
 
         function setEventHandlers()
@@ -896,6 +940,26 @@
         generate();
 
 
+        attachEvent("btnSave", "click", 
+            function (evt)
+            {
+                generate();
+                
+                var dat = { crontab: document.getElementById("txtCronTab").value };
+                $.post("ajax/SaveConfig.ashx", dat, 
+                    function (data)
+                    {
+                        // alert("Data Loaded: " + data.responseText);
+                        data = JSON.parse(data.responseText);
+                        // console.log(data);
+
+                        // console.log(data.isError);
+                        // console.log(data.cronTab);
+                    }
+                );
+            }
+        );
+        
         // document.getElementById("selMins").innerHTML = "";
         // ClearOptionsFast("selMins");
     </script>

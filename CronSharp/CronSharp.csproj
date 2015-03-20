@@ -81,6 +81,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="CronSharp.ini" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,6 +97,12 @@
     <Content Include="Libs\Common.Logging.dll" />
     <Content Include="Libs\Newtonsoft.Json.dll" />
     <Content Include="Libs\Quartz.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmbeddedWebServer\EmbeddedWebServer.csproj">
+      <Project>{02342998-8696-439c-87b0-dfb3abc43f6e}</Project>
+      <Name>EmbeddedWebServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

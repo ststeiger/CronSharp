@@ -1,4 +1,5 @@
-﻿var daysBaseScript = {
+﻿
+var daysBaseScript = {
 "ar-SA": [
 "الاحد",
 "الاثنين",

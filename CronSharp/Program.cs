@@ -1,9 +1,8 @@
 ﻿
-using System.Windows.Forms;
+using Quartz; // For .WithCronSchedule extension method...
+// using Quartz.Impl;
+// using Quartz.Impl.Triggers;
 
-using Quartz;
-using Quartz.Impl;
-using Quartz.Impl.Triggers;
 
 // Necessary references:
 // Quartz dll
@@ -25,13 +24,17 @@ namespace CronSharp
     {
 
 
-        internal class MinuteClock : IJob
+        internal class MinuteClock : Quartz.IJob
         {
-            public void Execute(IJobExecutionContext context)
+
+
+            public void Execute(Quartz.IJobExecutionContext context)
             {
                 System.Console.WriteLine("Time: {0}", System.DateTime.Now.ToString("yyyyMMdd HH:mm:ss.fff"));
-            }
-        }
+            } // End Sub Execute 
+
+
+        } // End Class MinuteClock 
 
 
         // http://stackoverflow.com/questions/14912494/scheduling-cron-jobs-with-quartz-net
@@ -43,14 +46,14 @@ namespace CronSharp
             //System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             //System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
 
-            ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
-            IScheduler scheduler = schedulerFactory.GetScheduler();
+            Quartz.ISchedulerFactory schedulerFactory = new Quartz.Impl.StdSchedulerFactory();
+            Quartz.IScheduler scheduler = schedulerFactory.GetScheduler();
 
-            IJobDetail jobDetail = JobBuilder.Create<MinuteClock>()
+            Quartz.IJobDetail jobDetail = Quartz.JobBuilder.Create<MinuteClock>()
                 .WithIdentity("TestJob")
                 .Build();
 
-            ITrigger trigger = TriggerBuilder.Create()
+            Quartz.ITrigger trigger = Quartz.TriggerBuilder.Create()
                 .ForJob(jobDetail)
                 //.WithCronSchedule("0 45 20 * * ?") // Every day 20:45
                 //.WithCronSchedule("0/5 * * * * ?") // Every 5 minutes
@@ -63,8 +66,7 @@ namespace CronSharp
             scheduler.ScheduleJob(jobDetail, trigger);
 
             scheduler.Start();
-        }
-
+        } // End Sub Test 
 
 
         /// <summary>
@@ -73,15 +75,52 @@ namespace CronSharp
         [System.STAThread]
         static void Main()
         {
-#if false
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+#if false 
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.Run(new Form1());
 #endif
-            Test();
+
+            Configure();
+
+            // Test();
+        } // End Sub Main 
+
+
+        public static void Configure()
+        {
+            int iPort = 8080; // If admin rights it requires, wrong it is ;)
+            iPort = 30080; // Damn !  I still no haz no admin rightz !
+
+
+            string strBasePath = "";
+
+            string strCurrentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(strCurrentDirectory);
+            strBasePath = System.IO.Path.Combine(di.Parent.Parent.Parent.FullName, "CronManager");
+            
+
+
+            //EmbeddableWebServer.cWebSource WebSource = new EmbeddableWebServer.cWebSource(System.Net.IPAddress.Any, iPort);
+            Mono.WebServer.XSPWebSource ws = new Mono.WebServer.XSPWebSource(System.Net.IPAddress.Any, iPort);
+
+            // EmbeddableWebServer.cServer Server = new EmbeddableWebServer.cServer(WebSource, strBasePath);
+            Mono.WebServer.ApplicationServer Server = new Mono.WebServer.ApplicationServer(ws, strBasePath);
+
+            Server.AddApplication("localhost", iPort, "/", strBasePath);
+            Server.Start(true, 0);
+
+
+            System.Diagnostics.Process.Start("\"http://localhost:" + iPort.ToString() + "\"");
+
+            System.Console.WriteLine(" --- Server up and running. Press any key to quit --- ");
+            System.Console.ReadKey();
+
+            Server.Stop();
         }
 
 
+    } // End Class Program 
 
-    }
-}
+
+} // End Namespace CronSharp 
