@@ -82,8 +82,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ajax\JSON.cs" />
-    <Compile Include="ajax\OrdinalInfo.cs" />
+    <Compile Include="AppCode\JSON.cs" />
+    <Compile Include="AppCode\OrdinalInfo.cs" />
     <Compile Include="ajax\SaveConfig.ashx.cs">
       <DependentUpon>SaveConfig.ashx</DependentUpon>
     </Compile>

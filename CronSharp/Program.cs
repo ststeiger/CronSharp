@@ -66,6 +66,7 @@ namespace CronSharp
             scheduler.ScheduleJob(jobDetail, trigger);
 
             scheduler.Start();
+            System.Console.WriteLine("started");
         } // End Sub Test 
 
 
@@ -81,9 +82,9 @@ namespace CronSharp
             System.Windows.Forms.Application.Run(new Form1());
 #endif
 
-            Configure();
+            // Configure();
 
-            // Test();
+            Test();
         } // End Sub Main 
 
 
@@ -117,7 +118,7 @@ namespace CronSharp
             System.Console.ReadKey();
 
             Server.Stop();
-        }
+        } // End Sub Configure 
 
 
     } // End Class Program 
