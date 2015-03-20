@@ -52,8 +52,9 @@ namespace CronSharp
 
             ITrigger trigger = TriggerBuilder.Create()
                 .ForJob(jobDetail)
-                //.WithCronSchedule("0 45 20 * * ?")
-                .WithCronSchedule("1 * * * * ?")
+                //.WithCronSchedule("0 45 20 * * ?") // Every day 20:45
+                //.WithCronSchedule("0/5 * * * * ?") // Every 5 minutes
+                .WithCronSchedule("15/5 * * * * ?") // Every 5 seconds between 15 and 60
                 
                 .WithIdentity("TestTrigger")
                 .StartNow()
