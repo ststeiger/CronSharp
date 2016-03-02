@@ -28,7 +28,7 @@ namespace CronManager.ajax
             dict["de-CH"]["of every"] = "alle";
             dict["de-CH"]["The"] = "Der";
             dict["de-CH"]["in day"] = "am Tag";
-            dict["de-CH"]["of"] = "vom"; // "of", "des"
+            dict["de-CH"]["of"] = "im"; // "of", "des"
             dict["de-CH"]["Every week day"] = "Jeden Wochentag (Mo-Fri)";
             dict["de-CH"]["At"] = "Um";
             dict["de-CH"]["Monday to Friday"] = "Montag bis Freitag";

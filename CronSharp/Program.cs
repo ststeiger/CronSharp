@@ -82,9 +82,9 @@ namespace CronSharp
             System.Windows.Forms.Application.Run(new Form1());
 #endif
 
-            // Configure();
+            Configure();
 
-            Test();
+            // Test();
         } // End Sub Main 
 
 
